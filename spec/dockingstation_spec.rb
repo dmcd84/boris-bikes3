@@ -44,4 +44,11 @@ end
     dockingstation = DockingStation.new
     expect(dockingstation.capacity).to eq DockingStation::DEFAULT_CAPACITY
   end
+
+  it 'should not release a broken bike' do
+    my_bike = Bike.new
+    my_bike.report_broken
+    subject.dock_bike(my_bike)
+    expect{subject.release_bike}.to raise_error "Cannot release broken bike" 
+  end
 end

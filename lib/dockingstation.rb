@@ -13,6 +13,7 @@ require_relative 'bike'
 
     def release_bike
       fail 'No bikes available' if empty?
+      fail 'Cannot release broken bike' unless @bikes[-1].working?
       @bikes.pop
     end
 
